@@ -19,4 +19,8 @@ $app->get('/login', function () use ($app) {
     return view("login");
 });
 
-$app->post("/login", "LoginController@test");
+$app->get('/admin', function () use ($app) {
+    return view("admin");
+});
+
+$app->post("/login", "LoginController@login");
