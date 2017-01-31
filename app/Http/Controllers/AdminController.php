@@ -20,22 +20,22 @@ class AdminController extends Controller
 
         move_uploaded_file($filetmp,$url);
 
-//        $path = $url;
-//        $type = pathinfo($path, PATHINFO_EXTENSION);
-//        $data = file_get_contents($path);
-//        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $path = $url;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         $PDO = new \PDO("mysql:host=localhost", "root", "");
         $PDO->query("USE lumenapi;");
-        $test = "test";
 
 
-        $query = $PDO->prepare("INSERT INTO woorden (woord-nl,woord-az,img)VALUES (:woord-nl, :woord-az, :img);");
-        $query->bindParam(":woord-nl",$_POST["woord-nl"]);
-        $query->bindParam(":woord-az",$_POST["woord-az"]);
-        $query->bindParam(":img",$test);
 
-        $query->execute();
+        $query = $PDO->prepare("INSERT INTO woorden (woordNL,woordAZ,img)VALUES (:woordNL, :woordAZ, :img);");
+        $query->bindParam(":woordNL",$_POST["woord-nl"]);
+        $query->bindParam(":woordAZ",$_POST["woord-az"]);
+        $query->bindParam(":img",$base64);
+
+          $query->execute();
         var_dump($query);
 
     }
