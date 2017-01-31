@@ -19,8 +19,14 @@ $app->get('/login', function () use ($app) {
     return view("login");
 });
 
+$app->get('/destroy', function () use ($app) {
+    return view("destroy");
+});
+
 $app->get('/admin', function () use ($app) {
     return view("admin");
 });
 
 $app->post("/login", "LoginController@login");
+
+$app->post("/admin", "AdminController@insertData");
